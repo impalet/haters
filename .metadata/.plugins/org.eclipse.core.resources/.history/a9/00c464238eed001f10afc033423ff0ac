@@ -1,0 +1,263 @@
+package gui;
+import clase.Alumno;
+import arreglos.ArregloAlumno;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import java.awt.Font;
+
+public class MantenimientoAlumno extends JInternalFrame implements ActionListener {
+	
+	//modelo de datos-MIRA ABAJO  CONFIGURAR TABLA
+		DefaultTableModel modelo;
+		//crear objetos trayendo un nuevo constructor pero de arreglo alumnos para usar sus datos
+		ArregloAlumno aa=new ArregloAlumno();
+
+	private static final long serialVersionUID = 1L;
+	private JTextField txtCodAlumno;
+	private JTextField txtNombres;
+	private JTextField txtApellidos;
+	private JTextField txtDni;
+	private JTextField txtEdad;
+	private JTextField txtCelular;
+	private JTextField txtEstado;
+	private JButton btnAdicionar;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_1_1;
+	private JButton btnNewButton_1_1_1;
+	private JTable tblAlumno;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MantenimientoAlumno frame = new MantenimientoAlumno();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MantenimientoAlumno() {
+		setTitle("COLEGIOS HATERS");
+		setClosable(true);
+		setBounds(100, 100, 774, 448);
+		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("COD ALUMNO :");
+		lblNewLabel.setBounds(10, 28, 78, 14);
+		getContentPane().add(lblNewLabel);
+		
+		txtCodAlumno = new JTextField();
+		txtCodAlumno.setBounds(93, 25, 86, 20);
+		getContentPane().add(txtCodAlumno);
+		txtCodAlumno.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("NOMBRES :");
+		lblNewLabel_1.setBounds(195, 28, 67, 14);
+		getContentPane().add(lblNewLabel_1);
+		
+		txtNombres = new JTextField();
+		txtNombres.setBounds(260, 25, 100, 20);
+		getContentPane().add(txtNombres);
+		txtNombres.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("APELLIDOS :");
+		lblNewLabel_2.setBounds(370, 28, 67, 14);
+		getContentPane().add(lblNewLabel_2);
+		
+		txtApellidos = new JTextField();
+		txtApellidos.setBounds(438, 25, 150, 20);
+		getContentPane().add(txtApellidos);
+		txtApellidos.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("DNI :");
+		lblNewLabel_3.setBounds(10, 73, 46, 14);
+		getContentPane().add(lblNewLabel_3);
+		
+		txtDni = new JTextField();
+		txtDni.setBounds(46, 70, 86, 20);
+		getContentPane().add(txtDni);
+		txtDni.setColumns(10);
+		
+		JLabel lblEdad = new JLabel("EDAD :");
+		lblEdad.setBounds(156, 73, 46, 14);
+		getContentPane().add(lblEdad);
+		
+		txtEdad = new JTextField();
+		txtEdad.setBounds(195, 70, 40, 20);
+		getContentPane().add(txtEdad);
+		txtEdad.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("CELULAR :");
+		lblNewLabel_4.setBounds(260, 73, 70, 14);
+		getContentPane().add(lblNewLabel_4);
+		
+		txtCelular = new JTextField();
+		txtCelular.setBounds(331, 70, 86, 20);
+		getContentPane().add(txtCelular);
+		txtCelular.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("ESTADO :");
+		lblNewLabel_5.setBounds(444, 73, 55, 14);
+		getContentPane().add(lblNewLabel_5);
+		
+		txtEstado = new JTextField();
+		txtEstado.setBounds(502, 70, 86, 20);
+		getContentPane().add(txtEstado);
+		txtEstado.setColumns(10);
+		
+		btnAdicionar = new JButton("ADICIONAR");
+		btnAdicionar.addActionListener(this);
+		btnAdicionar.setForeground(new Color(255, 255, 0));
+		btnAdicionar.setBackground(new Color(0, 255, 0));
+		btnAdicionar.setBounds(624, 25, 111, 23);
+		getContentPane().add(btnAdicionar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 138, 725, 269);
+		getContentPane().add(scrollPane);
+		
+		tblAlumno = new JTable();
+		tblAlumno.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tblAlumno.setForeground(new Color(0, 0, 0));
+		tblAlumno.setBackground(new Color(255, 255, 79));
+		tblAlumno.setFillsViewportHeight(true);
+		scrollPane.setViewportView(tblAlumno);
+		
+		btnNewButton_1 = new JButton("CONSULTAR");
+		btnNewButton_1.addActionListener(this);
+		btnNewButton_1.setForeground(Color.YELLOW);
+		btnNewButton_1.setBackground(Color.GREEN);
+		btnNewButton_1.setBounds(624, 52, 111, 23);
+		getContentPane().add(btnNewButton_1);
+		
+		btnNewButton_1_1 = new JButton("MODIFICAR");
+		btnNewButton_1_1.addActionListener(this);
+		btnNewButton_1_1.setForeground(Color.YELLOW);
+		btnNewButton_1_1.setBackground(Color.GREEN);
+		btnNewButton_1_1.setBounds(624, 78, 111, 23);
+		getContentPane().add(btnNewButton_1_1);
+		
+		btnNewButton_1_1_1 = new JButton("ELIMINAR");
+		btnNewButton_1_1_1.addActionListener(this);
+		btnNewButton_1_1_1.setForeground(Color.YELLOW);
+		btnNewButton_1_1_1.setBackground(Color.GREEN);
+		btnNewButton_1_1_1.setBounds(624, 104, 111, 23);
+		getContentPane().add(btnNewButton_1_1_1);
+		//CREAR 7CONFIGURAR TABLA/MODELO---MODELO DE TABLA MIRA ARRIBA
+		modelo=new DefaultTableModel();
+		modelo.addColumn("Cod.Alumno");
+		modelo.addColumn("Nombres");
+		modelo.addColumn("Apellidos");
+		modelo.addColumn("DNI");
+		modelo.addColumn("Celular");
+		modelo.addColumn("Estado");
+		//---asi añades a la tabla el modelo
+		tblAlumno.setModel(modelo);
+		listar();                                                                 		
+		
+
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton_1_1_1) {
+			actionPerformedBtnNewButton_1_1_1(e);
+		}
+		if (e.getSource() == btnNewButton_1_1) {
+			actionPerformedBtnNewButton_1_1(e);
+		}
+		if (e.getSource() == btnNewButton_1) {
+			actionPerformedBtnNewButton_1(e);
+		}
+		if (e.getSource() == btnAdicionar) {
+			actionPerformedBtnNewButton(e);
+		}
+	}
+	protected void actionPerformedBtnNewButton(ActionEvent e) {
+		int cod=leerCodigoAlumno();
+		Alumno x=aa.buscar(cod);
+		String nom=leerNombre();
+		String ape=leerApellidos();
+		int dni=leerDni();
+		int eda=leerEdad();
+		int cel=leerCelular();
+		int est=leerEstado();
+		
+		aa.adicionar(new Alumno(cod,nom,ape,dni,eda,cel,est));
+		listar();
+		limpiar();
+	}
+	protected void actionPerformedBtnNewButton_1(ActionEvent e) {
+	}
+	protected void actionPerformedBtnNewButton_1_1(ActionEvent e) {
+	}
+	protected void actionPerformedBtnNewButton_1_1_1(ActionEvent e) {
+	}
+	//metodos basicos
+	void listar() {
+		// se pone para que no repita
+		modelo.setRowCount(0);
+		//...
+		for(int i=0;i<aa.tamanio();i++) {
+		Alumno x=aa.obtener(i);
+		 Object fila[]= {x.getCodAlumno(),x.getNombres(),x.getApellidos(),x.getDni(),x.getEdad(),x.getCelular(),x.getEstado()};
+		modelo.addRow(fila);
+		}
+	}
+	//metodos de entrada
+	int leerCodigoAlumno() {
+		return Integer.parseInt(txtCodAlumno.getText());
+	}
+	String leerNombre() {
+		return txtNombres.getText().trim();
+	}
+	String leerApellidos() {
+		return txtApellidos.getText().trim();
+	}
+	int leerDni() {
+		return Integer.parseInt(txtDni.getText());
+	}
+	int leerEdad() {
+		return Integer.parseInt(txtEdad.getText());
+	}
+	int leerCelular() {
+		return Integer.parseInt(txtCelular.getText());
+	}
+	int leerEstado() {
+		return Integer.parseInt(txtEstado.getText());
+	}
+	//metodos mensajes
+	void mensajes(String msg) {
+		JOptionPane.showMessageDialog(this,msg);
+	}
+	void limpiar() {
+		txtCodAlumno.setText("");
+		txtNombres.setText("");
+		txtApellidos.setText("");
+		txtDni.setText("");
+		txtEdad.setText("");
+		txtCelular.setText("");
+		txtEstado.setText("");
+		txtCodAlumno.requestFocus();
+	}
+	
+}

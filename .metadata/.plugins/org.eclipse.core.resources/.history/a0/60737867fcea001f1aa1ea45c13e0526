@@ -1,0 +1,225 @@
+package principal;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Principal extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JMenu mnRegistro;
+	private JMenu mnMantenimiento;
+	private JMenu mnConsulta;
+	private JMenu mnReporte;
+	private JMenu mnAyuda;
+	private JMenuItem mnMatricula;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mnMantenimientoAlumno;
+	private JMenuItem mnMantenimientoCurso;
+	private JMenuItem mnAlumnosYcursos;
+	private JMenuItem mnMatriculaYretiro;
+	private JMenuItem mnMatriculasPendientes;
+	private JMenuItem mnMatriculasVigentes;
+	private JMenuItem mnMatriculasPorCurso;
+	private JMenuItem mnSalir;
+	private JMenuItem mnCreditos;
+	
+	//constructores de enlaces creas nuevos objetos
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Principal() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 688, 483);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(244, 235, 113));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBackground(new Color(128, 255, 128));
+		menuBar.setBounds(0, 0, 672, 22);
+		contentPane.add(menuBar);
+		
+		mnRegistro = new JMenu("REGISTRO");
+		mnRegistro.addActionListener(this);
+		mnRegistro.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		menuBar.add(mnRegistro);
+		
+		mnMatricula = new JMenuItem("MATRICULA");
+		mnMatricula.addActionListener(this);
+		mnRegistro.add(mnMatricula);
+		
+		mntmNewMenuItem = new JMenuItem("RETIRO");
+		mntmNewMenuItem.addActionListener(this);
+		mnRegistro.add(mntmNewMenuItem);
+		
+		mnMantenimiento = new JMenu("MANTENIMIENTO");
+		mnMantenimiento.addActionListener(this);
+		mnMantenimiento.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		menuBar.add(mnMantenimiento);
+		
+		mnMantenimientoAlumno = new JMenuItem("ALUMNO");
+		mnMantenimientoAlumno.addActionListener(this);
+		mnMantenimiento.add(mnMantenimientoAlumno);
+		
+		mnMantenimientoCurso = new JMenuItem("CURSO");
+		mnMantenimientoCurso.addActionListener(this);
+		mnMantenimiento.add(mnMantenimientoCurso);
+		
+		mnConsulta = new JMenu("CONSULTA");
+		mnConsulta.addActionListener(this);
+		mnConsulta.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		menuBar.add(mnConsulta);
+		
+		mnAlumnosYcursos = new JMenuItem("ALUMNOS Y CURSOS");
+		mnAlumnosYcursos.addActionListener(this);
+		mnConsulta.add(mnAlumnosYcursos);
+		
+		mnMatriculaYretiro = new JMenuItem("MATRICULA Y RETIRO");
+		mnMatriculaYretiro.addActionListener(this);
+		mnConsulta.add(mnMatriculaYretiro);
+		
+		mnReporte = new JMenu("REPORTES");
+		mnReporte.addActionListener(this);
+		mnReporte.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		menuBar.add(mnReporte);
+		
+		mnMatriculasPendientes = new JMenuItem("MATRICULAS PENDIENTES");
+		mnMatriculasPendientes.addActionListener(this);
+		mnReporte.add(mnMatriculasPendientes);
+		
+		mnMatriculasVigentes = new JMenuItem("MATRICULAS VIGENTES");
+		mnMatriculasVigentes.addActionListener(this);
+		mnReporte.add(mnMatriculasVigentes);
+		
+		mnMatriculasPorCurso = new JMenuItem("MATRICULAS POR CURSO");
+		mnMatriculasPorCurso.addActionListener(this);
+		mnReporte.add(mnMatriculasPorCurso);
+		
+		mnAyuda = new JMenu("AYUDA");
+		mnAyuda.addActionListener(this);
+		mnAyuda.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		menuBar.add(mnAyuda);
+		
+		mnSalir = new JMenuItem("SALIR");
+		mnSalir.addActionListener(this);
+		mnAyuda.add(mnSalir);
+		
+		mnCreditos = new JMenuItem("CREDITOS");
+		mnCreditos.addActionListener(this);
+		mnAyuda.add(mnCreditos);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mnCreditos) {
+			actionPerformedMnCreditos(e);
+		}
+		if (e.getSource() == mnSalir) {
+			actionPerformedMnSalir(e);
+		}
+		if (e.getSource() == mnMatriculasPorCurso) {
+			actionPerformedMnMatriculasPorCurso(e);
+		}
+		if (e.getSource() == mnMatriculasVigentes) {
+			actionPerformedMnMatriculasVigentes(e);
+		}
+		if (e.getSource() == mnMatriculasPendientes) {
+			actionPerformedMnMatriculasPendientes(e);
+		}
+		if (e.getSource() == mnMatriculaYretiro) {
+			actionPerformedMnMatriculaYretiro(e);
+		}
+		if (e.getSource() == mnAlumnosYcursos) {
+			actionPerformedMnAlumnosYcursos(e);
+		}
+		if (e.getSource() == mnMantenimientoCurso) {
+			actionPerformedMntmNewMenuItem_3(e);
+		}
+		if (e.getSource() == mnMantenimientoAlumno) {
+			actionPerformedMntmNewMenuItem_2(e);
+		}
+		if (e.getSource() == mntmNewMenuItem) {
+			actionPerformedMntmNewMenuItem_1(e);
+		}
+		if (e.getSource() == mnAyuda) {
+			actionPerformedMnAyuda(e);
+		}
+		if (e.getSource() == mnReporte) {
+			actionPerformedMnReporte(e);
+		}
+		if (e.getSource() == mnConsulta) {
+			actionPerformedMnConsulta(e);
+		}
+		if (e.getSource() == mnMantenimiento) {
+			actionPerformedMnMantenimiento(e);
+		}
+		if (e.getSource() == mnRegistro) {
+			actionPerformedMnRegistro(e);
+		}
+		if (e.getSource() == mnMatricula) {
+			actionPerformedMntmNewMenuItem(e);
+		}
+	}
+	protected void actionPerformedMntmNewMenuItem(ActionEvent e) {
+	}
+	protected void actionPerformedMnRegistro(ActionEvent e) {
+	}
+	protected void actionPerformedMnMantenimiento(ActionEvent e) {
+	}
+	protected void actionPerformedMnConsulta(ActionEvent e) {
+	}
+	protected void actionPerformedMnReporte(ActionEvent e) {
+	}
+	protected void actionPerformedMnAyuda(ActionEvent e) {
+	}
+	protected void actionPerformedMntmNewMenuItem_1(ActionEvent e) {
+	}
+	protected void actionPerformedMntmNewMenuItem_2(ActionEvent e) {
+	}
+	protected void actionPerformedMntmNewMenuItem_3(ActionEvent e) {
+	}
+	protected void actionPerformedMnAlumnosYcursos(ActionEvent e) {
+	}
+	protected void actionPerformedMnMatriculaYretiro(ActionEvent e) {
+	}
+	protected void actionPerformedMnMatriculasPendientes(ActionEvent e) {
+	}
+	protected void actionPerformedMnMatriculasVigentes(ActionEvent e) {
+	}
+	protected void actionPerformedMnMatriculasPorCurso(ActionEvent e) {
+	}
+	protected void actionPerformedMnSalir(ActionEvent e) {
+	}
+	protected void actionPerformedMnCreditos(ActionEvent e) {
+	}
+}
